@@ -8,6 +8,8 @@ html {
     min-width: 480px;
     margin: 0 auto;
     background-color: #212121;
+    background:   linear-gradient(to right, rgba(255,0,0,0.5), rgba(255, 255, 0, 0.5)), /* Red overlay */
+    linear-gradient(to right, rgba(255, 0, 76, 0.5), rgba(0,0,255,0.5)); /* Blue overlay */;
   }
   
   .lastResult {
@@ -68,18 +70,39 @@ html {
     background-color: #7a7a7a;
   }
   
-  #wrapper {
+  /* #wrapper {
     box-sizing: border-box;
     text-align: center;
     width: 450px;
     height: 550px;
     background-color: #474747;
+    background:   linear-gradient(to right, rgba(60, 255, 0, 0.808), rgba(244, 18, 225, 0.5)),  
+    linear-gradient(to left, rgba(234, 241, 5, 0.5), rgba(0,0,255,0.5)) ;
     color: #fff;
     font-size: 25px;
+  } */
+  #wrapper {
+    box-sizing: border-box;
+    text-align: center;
+    width: 450px;
+    height: 550px;
+    background: linear-gradient(250deg, #c40910, #3304dd, #07cdf0, #ff0ecb, #edfd0a, #270a26);
+    background-size: 300% 300%;
+    color: #fff;
+    font-size: 25px;
+    animation: gradientAnimation 10s ease infinite;
+  }
+  
+  @keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
   
   h1 {
-    background-color: #161616;
+    background-color: #06040a;
+     background:    linear-gradient(to right, rgba(60, 255, 0, 0.808), rgba(244, 18, 225, 0.5)), /* Red overlay */
+     linear-gradient(to left, rgba(234, 241, 5, 0.5), rgba(0,0,255,0.5)); /* Blue overlay */;
   
     color: #fff;
     text-align: center;

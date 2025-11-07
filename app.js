@@ -38,7 +38,7 @@ function validateGuess(guess){
             }
             else{
                 displayGuess(guess)
-                displayMessage(`Ooops!! Game Over!!->Random No. was ${randNumber}`,"red")
+                displayMessage(`😢 Game Over! The number was ${randNumber}`,"red")
                 endGame();
             }
         // displayGuess(guess)
@@ -54,25 +54,35 @@ function validateGuess(guess){
 
 function checkGuess(guess){
     if(guess===randNumber){
-      displayMessage("Yessss!! You guessed it right","green")  ;
+      displayMessage("🎉 Congratulations! You guessed it right! 🎉","green")  ;
      endGame();
     }else if(guess<randNumber){
-        displayMessage(" Random Number is high");
+        displayMessage("📈 Too low! Try a higher number");
     }else{
-        displayMessage("Random Number is low")
+        displayMessage("📉 Too high! Try a lower number")
     }
 }
 
 function displayGuess(guess){
     userInput.value='';
-    guessSlot.innerHTML+=`${guess},`;
+    if(guessSlot.innerHTML === ''){
+        guessSlot.innerHTML = guess;
+    } else {
+        guessSlot.innerHTML += `, ${guess}`;
+    }
     numberOfGuess++;
     remaining.innerHTML=`${7-numberOfGuess}`
 
 }
 
 function displayMessage(message,color){
-    lowOrHi.innerHTML=`<h2 style="color:${color}">${message}</h2>`;
+    let className = 'info';
+    if(color === 'green'){
+        className = 'success';
+    } else if(color === 'red'){
+        className = 'error';
+    }
+    lowOrHi.innerHTML=`<h2 class="${className}">${message}</h2>`;
 }
 
 function endGame(){
@@ -88,17 +98,18 @@ function endGame(){
 function newGame(){
     playGame=true;
     const newGameButton=document.querySelector('#newGame')
-    newGameButton.style.cursor='pointer';
-    newGameButton.style.color='yellow';
-    newGameButton.addEventListener('click',(evt)=>{
-    randNumber=parseInt(Math.random()*100+1);
-    prevGuess=[]
-    numberOfGuess=1
-    guessSlot.innerHTML=''
-    remaining.innerHTML=`${7-numberOfGuess}`
-    lowOrHi.innerHTML = '';
-    userInput.removeAttribute('disabled')
-    startOver.removeChild(p)
-    
-    })
+    if(newGameButton){
+        newGameButton.style.cursor='pointer';
+        newGameButton.addEventListener('click',(evt)=>{
+            randNumber=parseInt(Math.random()*100+1);
+            prevGuess=[]
+            numberOfGuess=1
+            guessSlot.innerHTML=''
+            remaining.innerHTML=`${7-numberOfGuess}`
+            lowOrHi.innerHTML = '';
+            userInput.removeAttribute('disabled')
+            userInput.focus();
+            startOver.removeChild(p)
+        })
+    }
 }
